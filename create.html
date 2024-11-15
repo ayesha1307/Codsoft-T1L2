@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a Quiz</title>
+</head>
+<body>
+    <h1>Create a New Quiz</h1>
+    
+    <form id="quiz-form" method="POST" action="/create-quiz">
+        <label for="quiz-title">Quiz Title:</label>
+        <input type="text" id="quiz-title" name="quizTitle" required>
+        
+        <div id="questions-container">
+            <!-- Add questions dynamically using JavaScript -->
+        </div>
+
+        <button type="button" id="add-question">Add Question</button>
+        <button type="submit">Submit Quiz</button>
+    </form>
+
+    <script>
+        document.getElementById('add-question').addEventListener('click', function () {
+            const container = document.getElementById('questions-container');
+            const questionHtml = `
+                <div class="question">
+                    <label>Question:</label>
+                    <input type="text" name="questions[]" required>
+
+                    <label>Option A:</label>
+                    <input type="text" name="optionA[]" required>
+
+                    <label>Option B:</label>
+                    <input type="text" name="optionB[]" required>
+
+                    <label>Option C:</label>
+                    <input type="text" name="optionC[]" required>
+
+                    <label>Option D:</label>
+                    <input type="text" name="optionD[]" required>
+
+                    <label>Correct Answer:</label>
+                    <select name="correctAnswer[]" required>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                    </select>
+                </div>
+                <hr>
+            `;
+            container.insertAdjacentHTML('beforeend', questionHtml);
+        });
+    </script>
+</body>
+</html>
